@@ -1,0 +1,199 @@
+syntax = "proto3";
+package wl;
+
+// 装备
+message Equip {
+    string id = 1; 
+    uint32 goodId  = 2;
+    bool   isEquip = 3; 
+    uint32 durable = 4;   // 耐久度
+    uint32 quality = 5;   // 品质
+    repeated uint32 prop = 6; 
+}
+
+message Good {           // 
+    uint32 goodId = 1;
+    uint32 count = 2;  
+}
+
+message Skill {
+    uint32 id = 1; 
+    uint32 level = 2; 
+    uint32 point = 3;
+}
+
+message Cityrelation { // 城市关系
+    uint32 cid = 1; 
+    uint32 relation = 2; 
+}
+
+message Zone {
+    uint32 stype = 1; 
+    string name  = 2; 
+    uint32 state = 3; 
+}
+
+message Pos {
+    uint32 x = 1; 
+    uint32 y = 2;
+}
+
+message Player {
+    string rid = 1;
+    string nick = 2; 
+    string createTime = 3;
+    uint32 level = 4; 
+    uint32 exp = 5; 
+    uint32 standpoint = 6;      // 善恶点
+    uint32 energy = 7;          // 精力
+        
+    uint32 potential = 8;       // 属性点
+    uint32 tizhi = 9; 
+    uint32 zhenqi = 10; 
+    uint32 gengu = 11; 
+    uint32 lingmin = 12; 
+    uint32 lidao = 13; 
+
+    uint32 curhp = 14;        // 属性
+    uint32 hp = 15; 
+    uint32 curmp = 16; 
+    uint32 mp = 17; 
+    uint32 curatk = 18; 
+    uint32 atk = 19; 
+    uint32 curdef = 20; 
+    uint32 def = 21; 
+    uint32 curcrit = 22; 
+    uint32 crit = 23; 
+    uint32 curspeed = 24; 
+    uint32 speed = 25; 
+    uint32 curdodge = 26; 
+    uint32 dodge = 27; 
+    uint32 curhit = 28; 
+    uint32 hit = 29; 
+
+    repeated Skill skills = 30;  // 技能
+    repeated uint32 achievement = 31;  // 成就
+    repeated uint32 titles = 32;   // 称号
+    repeated Cityrelation cityrelations = 33;    // 城市关系
+    repeated Good bag = 34;             // 背包
+    repeated Equip equipList = 35;          // 装备列表
+    uint32 talent = 36;   // 天赋
+    uint32 curMap = 37;   // 当前地图id
+    Pos pos = 38;         // 位置
+
+    uint32 state = 39;    // 当前状态 
+    uint32 element = 40;  // 元素属性
+}
+
+// 辅助技能熟练度
+
+
+// 登录
+message c2s_login_msg
+{
+    string name = 1;  
+    string plant = 2; 
+}
+
+message s2c_login_msg 
+{
+    uint32 code = 1; 
+    string loginToken = 2;
+    string uid = 3; 
+    string createTime = 4;
+}
+
+// 获取分区 
+message c2s_zonelist_msg
+{
+}
+
+message s2c_zonelist_msg 
+{
+    uint32 code = 1; 
+    repeated Zone zone = 2; 
+}
+
+// 进入游戏
+message c2s_enter_game_msg
+{
+    string uid = 1; 
+    uint32 zid = 2; 
+}
+message s2c_enter_game_msg
+{
+    uint32 code = 1;
+    Player player = 2; 
+    string serverTime = 3;
+}
+
+// 新建角色 
+message c2s_create_role_msg {
+    string uid = 1;
+    string nick = 2; 
+
+}
+message s2c_create_role_msg {
+    uint32 code = 1; 
+    Player player = 2; 
+}
+
+// 查看仓库
+message c2s_enter_home_box_msg {
+}
+message s2c_enter_home_box_msg{
+    uint32 code = 1;
+}
+
+// 丢掉物品
+message c2s_throw_good_msg {
+    string id = 1; 
+    uint32 count = 2; 
+}
+message s2c_throw_good_msg {
+    uint32 code = 1; 
+}
+
+// 移动位置 
+message c2s_move_pos_msg {
+    Pos pos = 1; 
+}
+message s2c_move_pos_msg {
+    uint32 code = 1; 
+}
+
+// 去一个新地图 
+message c2s_goto_new_map_msg {
+    uint32 mapId = 1;
+}
+message s2c_goto_new_map_msg {
+    uint32 code = 1; 
+}
+
+// 出售东西 
+message c2s_sell_goods_msg {
+    uint32 gold = 1; 
+    repeated Good goodList = 2; 
+}
+message s2c_sell_goods_msg {
+    uint32 code = 1; 
+    uint32 gold = 2; 
+    repeated Good goodListRemove = 3; 
+}
+
+// 购买东西 
+message c2s_buy_goods_msg {
+    uint32 gold = 1; 
+    uint32 goodId = 2;
+}
+message s2c_buy_goods_msg {
+    uint32 code = 1;
+    uint32 gold = 2; 
+    repeated Good goodListAdd = 3;
+}
+
+// 广播
+message s2c_broadcast_msg {
+    uint32 code = 1; 
+    string content = 2; 
+}

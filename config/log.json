@@ -1,0 +1,79 @@
+{
+    "appenders": {
+        "console": {
+            "type": "console"
+        },
+        "gate": {
+            "type": "dateFile",
+            "filename": "../logs/gate/gate-",
+            "encoding": "utf-8",
+            "pattern": ".yyyy-MM-dd.log",
+            "maxLogSize": 10000000,
+            "alwaysIncludePattern": true,
+            "compress": true
+        },
+        "auth": {
+            "type": "dateFile",
+            "filename": "../logs/auth/auth-",
+            "encoding": "utf-8",
+            "pattern": ".yyyy-MM-dd.log",
+            "maxLogSize": 10000000,
+            "alwaysIncludePattern": true,
+            "compress": true
+        }, 
+        "game": {
+            "type": "dateFile",
+            "filename": "../logs/game/game-",
+            "encoding": "utf-8",
+            "pattern": ".yyyy-MM-dd.log",
+            "maxLogSize": 10000000,
+            "alwaysIncludePattern": true,
+            "compress": true
+        }, 
+        "pvp": {
+            "type": "dateFile",
+            "filename": "../logs/pvp/pvp-",
+            "encoding": "utf-8",
+            "pattern": ".yyyy-MM-dd.log",
+            "maxLogSize": 10000000,
+            "alwaysIncludePattern": true,
+            "compress": true
+        }
+    },
+    "categories": {
+        "default": {
+            "appenders": [
+                "console"
+            ],
+            "level": "all"
+        },
+        "auth": {
+            "appenders": [
+                "console",
+                "auth"
+            ],
+            "level": "all"
+        }, 
+        "game": {
+            "appenders": [
+                "console",
+                "game"
+            ],
+            "level": "all"
+        },
+        "gate": {
+            "appenders": [
+                "console",
+                "gate"
+            ],
+            "level": "all"
+        }, 
+        "pvp": {
+            "appenders": [
+                "console",
+                "pvp"
+            ],
+            "level": "all"
+        }
+    }
+}

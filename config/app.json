@@ -1,0 +1,15 @@
+
+{
+    "debug": {
+        "gate":[
+            {"id": 1, "host":"127.0.0.1", "port": 9100, "isfont": true,  "remote": true, "rpc_port": 9101, "callremote": ["public", "game"]}
+        ],
+        "public":[
+            {"id": 1, "host":"127.0.0.1", "port": 9200, "isfont": false, "remote": true, "rpc_port": 9201, "callremote": ["game", "gate"]}
+        ],
+        "game":[
+            {"id": 1, "host":"127.0.0.1", "port": 9300, "isfont": false, "remote": true, "rpc_port": 9301, "callremote": ["public", "gate"]}
+        ]
+    }
+    
+}
