@@ -18,16 +18,7 @@ function connect_to_game(host, port, db_index) {
 	});
 }
 
-/* key, --> value
-bycw_center_user_uid_8791
-uinfo : {
-	unick: string,
-	uface: 图像ID，
-	usex: 性别,
-	uvip: VIP等级
-	is_guest: 是否为游客
-}
-*/
+
 function set_ugame_info_inredis(uid, ugame_info) {
 	if (game_redis === null) {
 		return;
@@ -46,7 +37,6 @@ function set_ugame_info_inredis(uid, ugame_info) {
 	});
 }
 
-// callback(status, body)
 function get_ugame_info_inredis(uid, callback) {
 	if (game_redis === null) {
 		callback(Respones.SYSTEM_ERR, null);
@@ -102,8 +92,6 @@ function get_world_rank_info(rank_name, rank_num, callback) {
 			return;
 		}
 
-		// uid, uchip --> 整数redis 字符串，
-		// [uid, uchip, uid, uchip, uid, uchip ...]
 		for(var i = 0; i < data.length; i ++) {
 			data[i] = parseInt(data[i]);
 		}
